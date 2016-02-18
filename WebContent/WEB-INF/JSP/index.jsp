@@ -41,8 +41,11 @@
 	</section>
 
 	<footer>
-		<div id='webmaster'>
-			<a href='mailto:${emailAdresWebmaster}'>${emailAdresWebmaster }</a>
+		<div class="mailto" id='owner'>
+			<a href='mailto:${emailOwner}'>Eigenaar: ${emailOwner}</a>
+		</div>
+		<div class="mailto" id="webmaster">
+			<a href="mailto:${emailWebmaster}">Webmaster: ${initParam.emailWebmaster}</a>
 		</div>
 		<div id="aantalViews">Deze pagina werd ${aantalViews} keer bekeken.</div>
 	</footer>

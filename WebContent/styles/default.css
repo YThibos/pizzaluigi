@@ -106,17 +106,29 @@ ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
 	background-color: #ccff00;
 }
 
-#aantalViews {
-	font-size: 				0.625em;
-	float:					right;
-	display: 				block;
-	color:					white;
+section.content {
+	width:					75%;
+	margin: 				0 auto;
 }
 
-section.content {
-	width:					75% auto;
-}
 footer {
 	backgroundcolor:		red;
 	width:					100%;
+}
+footer #webmaster {
+	float:					left;
+}
+footer .mailto a {
+	text-decoration: 		none;
+	color:					#9b9b9b;
+	display:				block;
+}
+footer .mailto a:hover {
+	color:					#787878;
+}
+
+footer #aantalViews {
+	float:					right;
+	font-size:				0.625em;
+	
 }
