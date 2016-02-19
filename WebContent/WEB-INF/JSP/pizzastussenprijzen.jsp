@@ -12,7 +12,7 @@
 
 <body>
 	<c:import url='/WEB-INF/JSP/menu.jsp' />
-
+	<section class="content">
 	<h1>Kies je minimum en maximumprijs</h1>
 	<form> <!--method='get' action='<c:url value='/pizzas/tussenprijzen.htm'/>'-->
 		<label>Van prijs
@@ -35,6 +35,7 @@
 			<div class='fout'>Geen pizza’s gevonden</div>
 		</c:if>
 	</form>
+	</section>
 
 </body>
 

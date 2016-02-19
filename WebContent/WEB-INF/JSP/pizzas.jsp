@@ -15,6 +15,7 @@
 <body>
 	<c:import url='/WEB-INF/JSP/menu.jsp' />
 
+<section class="content">
 	<h1>Pizza's</h1>
 	<ul class='zebra'>
 		<c:forEach var='pizza' items='${pizzas}'>
@@ -26,5 +27,6 @@
 			</li>
 		</c:forEach>
 	</ul>
+</section>
 </body>
 </html>

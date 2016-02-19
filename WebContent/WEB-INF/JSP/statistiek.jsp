@@ -12,6 +12,8 @@
 
 <body>
 	<c:import url='/WEB-INF/JSP/menu.jsp' />
+	
+<section class="content">
 	<h1>Statistiek</h1>
 	<dl>
 		<dt>Welkom</dt>
@@ -21,6 +23,7 @@
 		<dt>Statistieken</dt>
 		<dd>${statistiekRequests }
 	</dl>
+</section>
 </body>
 
 </html>

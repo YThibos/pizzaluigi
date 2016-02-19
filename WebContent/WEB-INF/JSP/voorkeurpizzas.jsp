@@ -13,7 +13,7 @@
 <body>
 
 	<c:import url='/WEB-INF/JSP/menu.jsp' />
-	
+	<section class="content">
 	<h1>Voorkeurpizza's</h1>
 	<form>
 		<ul class='zonderbolletjes'>
@@ -34,5 +34,6 @@
 			</c:forEach>
 		</ul>
 	</c:if>
+	</section>
 </body>
 </html>
