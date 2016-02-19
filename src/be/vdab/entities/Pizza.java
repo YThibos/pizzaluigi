@@ -48,7 +48,7 @@ public class Pizza {
 	}
 	
 	public static boolean isNaamValid(String naam) {
-		// TODO Naam v/e pizza mag niet null zijn, en geen lege string
+		// Naam v/e pizza mag niet null zijn, en geen lege string
 		return naam != null && !naam.isEmpty();
 	}
 	

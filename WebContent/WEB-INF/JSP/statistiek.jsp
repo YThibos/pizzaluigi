@@ -18,6 +18,8 @@
 		<dd>${indexRequests}</dd>
 		<dt>Pizzas</dt>
 		<dd>${pizzasRequests}</dd>
+		<dt>Statistieken</dt>
+		<dd>${statistiekRequests }
 	</dl>
 </body>
 

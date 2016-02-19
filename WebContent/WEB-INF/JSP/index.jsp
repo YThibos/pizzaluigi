@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<header>
+	<section>
 		<c:import url='/WEB-INF/JSP/menu.jsp' />
 
 
@@ -24,7 +24,7 @@
 				class='fullwidth'>
 			<h2>${begroeting}</h2>
 		</section>
-	</header>
+	</section>
 
 	<section class="content" id="zaakvoerder">
 		<h2>De zaakvoerder</h2>
