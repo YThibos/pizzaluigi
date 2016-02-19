@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import be.vdab.dao.PizzaDAO;
 import be.vdab.entities.Pizza;
 
 /**
@@ -24,6 +25,8 @@ public class PizzaServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/pizzas.jsp";
+	
+	private final PizzaDAO pizzaDAO = new PizzaDAO();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -33,17 +36,14 @@ public class PizzaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		// Increment views counter
 		((AtomicInteger) this.getServletContext().getAttribute(PIZZAS_REQUESTS))
 		.incrementAndGet();
 
-		Map<Long, Pizza> pizzas = new LinkedHashMap<>();
+		request.setAttribute("pizzas", pizzaDAO.findAll());
 
-		pizzas.put(12L, new Pizza(12, "Prosciutto", BigDecimal.valueOf(4), true));
-		pizzas.put(14L, new Pizza(14, "Margehrita", BigDecimal.valueOf(5), false));
-		pizzas.put(17L, new Pizza(17, "Calzone", BigDecimal.valueOf(4), false));
-		pizzas.put(23L, new Pizza(23, "Fungi & Olive", BigDecimal.valueOf(5), false));
-		request.setAttribute("pizzas", pizzas);
-
+		
+		// Forward request to VIEW
 		request.getRequestDispatcher(VIEW).forward(request, response);
 
 	}
