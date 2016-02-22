@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import be.vdab.dao.PizzaDAO;
 import be.vdab.entities.Pizza;
@@ -17,6 +19,7 @@ import be.vdab.entities.Pizza;
 /**
  * Servlet implementation class PizzaToevoegenServlet
  */
+@MultipartConfig
 @WebServlet("/pizzas/toevoegen.htm")
 public class PizzaToevoegenServlet extends HttpServlet {
 	
@@ -60,13 +63,25 @@ public class PizzaToevoegenServlet extends HttpServlet {
 			fouten.put("prijs", "Geef een getal in");
 		}
 		
+		Part fotoPart = request.getPart("foto");
+		boolean fotoIsOpgeladen = (fotoPart != null && fotoPart.getSize() != 0);
+		if (fotoIsOpgeladen && !fotoPart.getContentType().contains("jpeg")) {
+			fouten.put("foto", "geen JPEG foto");
+		}
+		
 		if (fouten.isEmpty()) {
 			
 			// Haal laatste input uit params (pikant) indien aanwezig, maak pizza en steek in DB
 			boolean pikant = "pikant".equals(request.getParameter("pikant"));
-			pizzaDAO.create(new Pizza(naam, prijs, pikant));
+			Pizza pizza = new Pizza(naam, prijs, pikant);
+			pizzaDAO.create(pizza);
 			
-			request.setAttribute("pizzas", pizzaDAO.findAll());
+			if (fotoIsOpgeladen) {
+				String pizzaFotosPad = 
+						this.getServletContext().getRealPath("/pizzafotos");
+				fotoPart.write(String.format("%s/%d.jpg", pizzaFotosPad, pizza.getId()));
+			}
+			
 			response.sendRedirect(String.format(REDIRECT_URL, request.getContextPath()));
 		}
 		else {

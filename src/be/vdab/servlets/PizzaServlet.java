@@ -1,9 +1,10 @@
 package be.vdab.servlets;
 
+import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletException;
@@ -39,8 +40,20 @@ public class PizzaServlet extends HttpServlet {
 		// Increment views counter
 		((AtomicInteger) this.getServletContext().getAttribute(PIZZAS_REQUESTS))
 		.incrementAndGet();
+		
+		List<Pizza> pizzas = pizzaDAO.findAll();
+		
+		String pizzaFotosPad = this.getServletContext().getRealPath("/pizzafotos");
+		Set<Long> pizzaIdsMetfoto = new HashSet<>();
+		pizzas.stream().forEach(pizza -> {
+			File file = new File(String.format("%s/%d.jpg", pizzaFotosPad, pizza.getId()));
+			if (file.exists()) {
+				pizzaIdsMetfoto.add(pizza.getId());
+			}
+		});
 
-		request.setAttribute("pizzas", pizzaDAO.findAll());
+		request.setAttribute("pizzas", pizzas);
+		request.setAttribute("pizzaIdsMetFoto", pizzaIdsMetfoto);
 
 		
 		// Forward request to VIEW
