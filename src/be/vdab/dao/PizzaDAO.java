@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import be.vdab.entities.Pizza;
 
-public class PizzaDAO {
+public class PizzaDAO extends AbstractDAO {
 
 	private static final Map<Long, Pizza> PIZZAS = new ConcurrentHashMap<>();
 
