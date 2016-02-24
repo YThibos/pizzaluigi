@@ -21,7 +21,9 @@
 		<dt>Pizzas</dt>
 		<dd>${pizzasRequests}</dd>
 		<dt>Statistieken</dt>
-		<dd>${statistiekRequests }
+		<dd>${statistiekRequests }</dd>
+		<dt>Aantal Mandjes</dt>
+		<dd>${aantalMandjes} mandje(s)</dd>
 	</dl>
 </section>
 </body>
