@@ -2,11 +2,11 @@ package be.vdab.dao;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -32,20 +32,17 @@ public class PizzaDAO extends AbstractDAO {
 	}
 
 	public List<Pizza> findAll() {
-		try (Connection connection = dataSource.getConnection()) {
-			
-			Statement statement = connection.createStatement();
-			ResultSet results = statement.executeQuery(SQL_FIND_ALL);
-			
+		try (Connection connection = dataSource.getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet results = statement.executeQuery(SQL_FIND_ALL);) {
+
 			List<Pizza> pizzas = new ArrayList<>();
 			while (results.next()) {
 				pizzas.add(resultSetRijNaarPizza(results));
 			}
 			return pizzas;
-			
-			// TODO ENDED HERE !!!!
-		}
-		catch (SQLException ex ) {
+
+		} catch (SQLException ex) {
 			throw new DAOException(ex);
 		}
 	}
@@ -56,24 +53,63 @@ public class PizzaDAO extends AbstractDAO {
 	}
 
 	public Pizza read(long id) {
-		return PIZZAS.get(id);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_READ);) {
+
+			statement.setLong(1, id);
+
+			try (ResultSet results = statement.executeQuery();) {
+				if (results.next()) {
+					return resultSetRijNaarPizza(results);
+				}
+				return null;
+			}
+
+		} catch (SQLException ex) {
+			throw new DAOException(ex);
+		}
 	}
 
 	public List<Pizza> findByPrijsBetween(BigDecimal van, BigDecimal tot) {
-		List<Pizza> gevondenPizzas = new ArrayList<>();
 
-		for (Pizza pizza : PIZZAS.values()) {
-			if (pizza.getPrijs().compareTo(van) >= 0 && pizza.getPrijs().compareTo(tot) <= 0) {
-				gevondenPizzas.add(pizza);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_PRIJS_BETWEEN);) {
+
+			List<Pizza> gevondenPizzas = new ArrayList<>();
+
+			statement.setBigDecimal(1, van);
+			statement.setBigDecimal(2, tot);
+
+			try (ResultSet results = statement.executeQuery();) {
+				while (results.next()) {
+					gevondenPizzas.add(resultSetRijNaarPizza(results));
+				}
 			}
+			return gevondenPizzas;
+
+		} catch (SQLException ex) {
+			throw new DAOException(ex);
 		}
 
-		return gevondenPizzas;
 	}
 
 	public void create(Pizza pizza) {
-		pizza.setId(Collections.max(PIZZAS.keySet()) + 1);
-		PIZZAS.put(pizza.getId(), pizza);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(SQL_CREATE, Statement.RETURN_GENERATED_KEYS);) {
+			
+			statement.setString(1, pizza.getNaam());
+			statement.setBigDecimal(2, pizza.getPrijs());
+			statement.setBoolean(3, pizza.isPikant());
+			statement.executeUpdate();
+			try (ResultSet results = statement.getGeneratedKeys()) {
+				results.next();
+				pizza.setId(results.getLong(1));
+			}
+			
+		}
+		catch (SQLException ex ) {
+			throw new DAOException(ex);
+		}
 	}
 
 }
