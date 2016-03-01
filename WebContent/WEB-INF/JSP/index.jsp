@@ -1,5 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
 
 <!DOCTYPE HTML>
 <html lang='nl'>
@@ -37,10 +38,15 @@
 			<dd>${zaakvoerder.gehuwd ? 'Ja' : 'Nee' }</dd>
 			<dt>Adres</dt>
 			<dd>${zaakvoerder.adres}</dd>
+			<dt>Aantal pizza's verkocht</dt>
+			<dd><fmt:formatNumber value="${aantalPizzasVerkocht}"/></dd>
 		</dl>
 	</section>
 
 	<footer>
+		<div class="datum">
+			<p>Vandaag: <fmt:formatDate value="${nu }" type="date" dateStyle="full"/></p>
+		</div>
 		<div class="mailto" id='owner'>
 			<a href='mailto:${emailOwner}'>Eigenaar: ${emailOwner}</a>
 		</div>
