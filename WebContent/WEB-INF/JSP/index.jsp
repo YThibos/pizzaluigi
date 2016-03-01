@@ -1,28 +1,25 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
+<%@ taglib uri='http://vdab.be/tags' prefix='vdab'%>
 
 <!DOCTYPE HTML>
 <html lang='nl'>
 
 <head>
-<link rel='shortcut icon' href='images/favicon.ico' type='image/x-icon' />
-<link rel='stylesheet' href='styles/default.css' />
-<meta name='viewport' content='width=device-width, initial-scale=1' />
-<c:import url='/WEB-INF/JSP/head.jsp'>
-	<c:param name='title' value='Pizza Luigi' />
-</c:import>
+ <vdab:head title="Pizza luigi's: Welkom" />
 </head>
 
 <body>
 	<section>
-		<c:import url='/WEB-INF/JSP/menu.jsp' />
+		<vdab:menu/>
+		<h1>Pizza Luigi</h1>
+			<img src=<c:url value='/images/pizza.jpg'/> alt='pizza'
+				class='fullwidth'>
 
 
 		<section class="content" id="begroeting">
-			<h1>Pizza Luigi</h1>
-			<img src=<c:url value='/images/pizza.jpg'/> alt='pizza'
-				class='fullwidth'>
+			
 			<h2>${begroeting}</h2>
 		</section>
 	</section>

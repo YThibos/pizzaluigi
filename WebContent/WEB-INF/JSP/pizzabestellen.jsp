@@ -1,17 +1,16 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib uri='http://vdab.be/tags' prefix='vdab'%>
 
 <!DOCTYPE HTML>
 <html>
 
 <head>
-<c:import url='/WEB-INF/JSP/head.jsp'>
-	<c:param name='title' value='Bestellen' />
-</c:import>
+<vdab:head title="Pizza bestellen"/>
 </head>
 
 <body>
-	<c:import url='/WEB-INF/JSP/menu.jsp' />
+	<vdab:menu></vdab:menu>
 
 	<h1>Pizza's bestellen</h1>
 	<c:if test='${not empty allePizzas}'>

@@ -1,18 +1,17 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib uri='http://vdab.be/tags' prefix='vdab'%>
 
 <!DOCTYPE HTML>
 <html lang='nl'>
 
 <head>
-<c:import url='/WEB-INF/JSP/head.jsp'>
-	<c:param name='title' value="Voorkeurpizza’s" />
-</c:import>
+<vdab:head title="Voorkeurpizza's"/>
 </head>
 
 <body>
 
-	<c:import url='/WEB-INF/JSP/menu.jsp' />
+	<vdab:menu></vdab:menu>
 	<section class="content">
 	<h1>Voorkeurpizza's</h1>
 	<form>

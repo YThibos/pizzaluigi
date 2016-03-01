@@ -1,16 +1,15 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib uri='http://vdab.be/tags' prefix='vdab'%>
 
 <!doctype html>
 <html lang='nl'>
 <head>
-<c:import url='/WEB-INF/JSP/head.jsp'>
-	<c:param name='title' value='Problemen bij ophalen data' />
-</c:import>
+<vdab:head title="Problemen bij ophalen van data"/>
 </head>
 
 <body>
-	<c:import url='/WEB-INF/JSP/menu.jsp' />
+	<vdab:menu></vdab:menu>
 	<h1>Problemen bij het ophalen van data</h1>
 	<img src='<c:url value="/images/datafout.jpg"/>' alt='data fout'>
 	<p>
