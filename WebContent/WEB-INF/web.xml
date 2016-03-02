@@ -4,13 +4,19 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<servlet>
-		<servlet-name>indexservlet</servlet-name>
+		<servlet-name>IndexServlet</servlet-name>
 		<servlet-class>be.vdab.servlets.IndexServlet</servlet-class>
 		<init-param>
 			<param-name>emailOwner</param-name>
 			<param-value>yannick.thibos@gmail.com</param-value>
 		</init-param>
 	</servlet>
+	<!-- 
+	<servlet-mapping>
+		<servlet-name>IndexServlet</servlet-name>
+		<url-pattern>/index.htm</url-pattern>
+	</servlet-mapping>
+	 -->
 	<context-param>
 		<param-name>emailWebmaster</param-name>
 		<param-value>yannick.thibos@gmail.com</param-value>
