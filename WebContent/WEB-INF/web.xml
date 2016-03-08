@@ -11,12 +11,8 @@
 			<param-value>yannick.thibos@gmail.com</param-value>
 		</init-param>
 	</servlet>
-	<!-- 
-	<servlet-mapping>
-		<servlet-name>IndexServlet</servlet-name>
-		<url-pattern>/index.htm</url-pattern>
-	</servlet-mapping>
-	 -->
+	<!-- <servlet-mapping> <servlet-name>IndexServlet</servlet-name> <url-pattern>/index.htm</url-pattern> 
+		</servlet-mapping> -->
 	<context-param>
 		<param-name>emailWebmaster</param-name>
 		<param-value>yannick.thibos@gmail.com</param-value>
