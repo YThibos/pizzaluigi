@@ -58,8 +58,6 @@ public class PizzaBestellenServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute(MANDJE, response);
-		
 		if (request.getParameterValues("id") != null) {
 			
 			HttpSession session = request.getSession();
